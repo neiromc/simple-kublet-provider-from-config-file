@@ -1,16 +1,17 @@
-#
-# run
-#
+## Run
+
+```bash
 DOCKER_CONFIG_FILE=examples/config.json ./simple-kublet-provider-from-config-file.sh < examples/kubelet-request.json
-#
-# default path for DOCKER_CONFIG_FILE = /var/lib/kubelet/config.json
-#
+```
 
-#
-# Add to k8s
-#
+Default path to DOCKER_CONFIG_FILE:
+```
+/var/lib/kubelet/config.json
+```
 
-1. Put .sh file to /usr/local/bin/simple-kublet-provider-from-config-file
+## Use in k8s
+
+1. On host copy shell script to custom bin dir:
 ```bash
 cp ./simple-kublet-provider-from-config-file.sh /usr/local/bin/simple-kublet-provider-from-config-file
 
@@ -32,7 +33,7 @@ providers:
         - /usr/local/bin/simple-kublet-provider-from-config-file
 ```
 
-3. Restart kubelet with params (you can change it in systemd)
+3. Restart kubelet with params (you can change it in systemd unit file or add to kubelet config in /etc)
 ```bash
 kubelet \
   --image-credential-provider-config=/etc/kubernetes/credential-provider-config.yaml \
